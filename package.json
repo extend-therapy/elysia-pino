@@ -1,0 +1,51 @@
+{
+  "name": "@extend-therapy/elysia-pino",
+  "version": "0.1.0",
+  "description": "Simple, opinionated pino logger plugin for Elysia — request-scoped ctx.log, env-gated redaction, pretty dev output, opt-in request logging.",
+  "author": "Eli Selkin <eli@extendtherapy.com>",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/extend-therapy/elysia-pino.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist || true && bunx tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test ./src",
+    "lint": "oxlint",
+    "prepublishOnly": "bun run build",
+    "up": "bun run scripts/bump.ts",
+    "pub": "op run --env-file=.env.op -- bun publish"
+  },
+  "peerDependencies": {
+    "elysia": "^1.4.0",
+    "pino": "^10.0.0"
+  },
+  "peerDependenciesMeta": {
+    "pino-pretty": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "elysia": "^1.4.29",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
+    "typescript": "^6"
+  },
+  "files": [
+    "dist/**/*",
+    "!dist/**/*.test.*",
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "bun": ">=1.3.0"
+  }
+}
