@@ -1,6 +1,6 @@
 {
   "name": "@extend-therapy/elysia-pino",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple, opinionated pino logger plugin for Elysia — request-scoped ctx.log, env-gated redaction, pretty dev output, opt-in request logging.",
   "author": "Eli Selkin <eli@extendtherapy.com>",
   "license": "MIT",
