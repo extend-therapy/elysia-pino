@@ -17,8 +17,12 @@ export interface CreatePinoLoggerConfig {
   isProd?: boolean;
   /** Runtime env label (e.g. process.env.RUN_ENV). Used for `isProd` fallback and the `env` base binding. */
   runEnv?: string;
-  /** pino level. Defaults to `"info"`. */
-  level?: LevelWithSilent;
+  /**
+   * pino level. Defaults to `"info"`. Accepts pino's standard levels with
+   * autocomplete, but also any custom level string (pino supports custom levels,
+   * and callers often pass a plain `string` from config).
+   */
+  level?: LevelWithSilent | (string & {});
   /** Service name attached to every line via pino `base`. */
   service?: string;
   /** Version string attached to every line via pino `base`. */
