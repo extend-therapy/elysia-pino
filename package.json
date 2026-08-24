@@ -1,7 +1,7 @@
 {
   "name": "@extend-therapy/elysia-pino",
-  "version": "0.1.6",
-  "description": "Simple, opinionated pino logger plugin for Elysia — request-scoped ctx.log, env-gated redaction, pretty dev output, opt-in request logging.",
+  "version": "2.0.1-beta.1",
+  "description": "Simple, opinionated pino logger plugin for Elysia \u2014 request-scoped ctx.log, env-gated redaction, pretty dev output, opt-in request logging.",
   "author": "Eli Selkin <eli@extendtherapy.com>",
   "license": "MIT",
   "private": false,
@@ -22,7 +22,7 @@
     "pub": "op run --env-file=.env.op -- bun publish"
   },
   "peerDependencies": {
-    "elysia": "^1.4.0",
+    "elysia": ">= 2.0.0-beta.6",
     "pino": "^10.0.0"
   },
   "peerDependenciesMeta": {
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/bun": "^1.4.0",
-    "elysia": "^1.4.29",
+    "elysia": "2.0.0-beta.6",
     "pino": "^10.3.1",
     "pino-pretty": "^13.1.3",
     "typescript": "^7.0.2"

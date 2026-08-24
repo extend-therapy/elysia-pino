@@ -42,10 +42,15 @@ export interface CreatePinoLoggerConfig {
 /**
  * Elysia hook scope for propagating the plugin's `derive`/`afterResponse` to the
  * host app. `"global"` exposes `ctx.log` app-wide (the useful default);
- * `"scoped"` limits it to the immediate parent. (`"local"` is intentionally not
+ * `"plugin"` limits it to the immediate parent. (`"local"` is intentionally not
  * offered — a logger only the plugin instance can see has no use.)
+ *
+ * **Renamed in 2.0:** this was `"global" | "scoped"` on the 1.x line. Elysia 2.0
+ * removed the `"scoped"` literal from `.as()` in favour of `"plugin"`, so the
+ * option mirrors the framework's own vocabulary rather than translating between
+ * two spellings of the same thing.
  */
-export type HookScope = "global" | "scoped";
+export type HookScope = "global" | "plugin";
 
 /** Options for the {@link elysiaPino} plugin. */
 export interface ElysiaPinoOptions {

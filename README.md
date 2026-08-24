@@ -77,14 +77,27 @@ Elysia plugin. Options:
 | `requestIdHeader` | `"x-request-id"` | header read for the correlation id (falls back to a uuid) |
 | `autoLog` | `false` | emit one `"request completed"` line per response |
 | `autoLogLevel` | `"info"` | level for that line |
-| `as` | `"global"` | Elysia hook scope (`"global" | "scoped" | "local"`) |
+| `as` | `"global"` | Elysia hook scope (`"global"` or `"plugin"`) |
 | `name` / `seed` | plugin defaults | Elysia de-duplication keys |
 
-## Elysia 2.0
+## Versions
 
-This targets Elysia **1.4.x**. Moving to 2.0 is a small internal change (`onAfterResponse` →
-`afterResponse`, the `{ as }` object → the bare `'plugin'` string, and `.error(...)` for the
-error hook). See `ext-thx-elysia/docs/elysia-2.0-migration.md`.
+Two supported lines, mirroring how the Elysia ecosystem itself ships. The 2.0 line is
+published as a **prerelease** because the Elysia it targets is itself a beta -- a plain `2.0.1`
+would resolve as stable for `@2` and misrepresent that:
+
+| dist-tag | version | Elysia |
+|---|---|---|
+| `latest` | `0.1.x` | 1.4.x |
+| `next` | `2.0.x-beta.N` | 2.0.0-beta.x |
+
+`npm i @extend-therapy/elysia-pino` gets the 1.4-compatible build.
+`npm i @extend-therapy/elysia-pino@next` gets the 2.0 one.
+
+**Breaking on the 2.0 line:** the `as` option value `"scoped"` is now `"plugin"`. Elysia 2.0
+removed the `"scoped"` literal from `.as()`, so the option follows the framework's vocabulary
+rather than translating between two spellings. Internally `onAfterResponse` became
+`afterResponse`. See `ext-thx-elysia/docs/elysia-2.0-migration.md`.
 
 ## License
 

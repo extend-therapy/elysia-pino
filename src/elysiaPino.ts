@@ -14,10 +14,9 @@ type WithGlobalLog<T> = T extends { as(scope: "global"): infer R } ? R : never;
  *
  * A focused drop-in for `@bogeychan/elysia-logger`'s `.into()`, keeping only the
  * parts this codebase uses: a request-scoped child logger and (optionally) a
- * single structured line per response. Targets **Elysia 1.4.x** — see
- * `ext-thx-elysia/docs/elysia-2.0-migration.md` for the hook renames needed when
- * moving to Elysia 2.0 (`onAfterResponse` → `afterResponse`, `{ as }` object →
- * bare `'plugin'` string).
+ * single structured line per response.
+ * Targets **Elysia 2.0**; the 1.4-compatible build stays on the `latest` dist-tag
+ * at 0.1.x.
  *
  * @param logger The base logger (typically from {@link createPinoLogger}).
  * @param options See {@link ElysiaPinoOptions}.
@@ -61,7 +60,7 @@ export function elysiaPino(logger: Logger, options: ElysiaPinoOptions = {}) {
         }),
       };
     })
-    .onAfterResponse((ctx) => {
+    .afterResponse((ctx) => {
       if (!autoLog) return;
       const start = started.get(ctx.request);
       started.delete(ctx.request);
@@ -81,7 +80,7 @@ export function elysiaPino(logger: Logger, options: ElysiaPinoOptions = {}) {
     });
 
   // `.as()` is overloaded per literal; branch on the literal and normalise the
-  // rarely-used "scoped" path to the same stable type so `ctx.log` stays typed.
-  if (as === "scoped") return app.as("scoped") as unknown as WithGlobalLog<typeof app>;
+  // rarely-used "plugin" path to the same stable type so `ctx.log` stays typed.
+  if (as === "plugin") return app.as("plugin") as unknown as WithGlobalLog<typeof app>;
   return app.as("global");
 }

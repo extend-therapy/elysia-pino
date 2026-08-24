@@ -92,7 +92,7 @@ describe("elysiaPino", () => {
     const app = new Elysia().use(elysiaPino(logger, { autoLog: true })).get("/auto", () => "ok");
 
     await app.handle(new Request("http://localhost/auto"));
-    // onAfterResponse runs after handle() resolves — let the queue flush.
+    // afterResponse runs after handle() resolves — let the queue flush.
     await Bun.sleep(20);
 
     const summary = lines.find((l) => l.msg === "request completed");
