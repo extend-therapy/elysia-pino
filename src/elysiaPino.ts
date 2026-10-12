@@ -60,7 +60,7 @@ export function elysiaPino(logger: Logger, options: ElysiaPinoOptions = {}) {
         }),
       };
     })
-    .afterResponse((ctx) => {
+    .onAfterResponse((ctx) => {
       if (!autoLog) return;
       const start = started.get(ctx.request);
       started.delete(ctx.request);
